@@ -99,11 +99,10 @@ INSERT INTO comments (comment_id, tweet_id, parent_comment_id) VALUES
 
 -->All Queries 
 
-1)Fetch all users' names from the database:
+--1)Fetch all users' names from the database:
+SELECT name FROM users;
 
--->SELECT name FROM users;
-
-2)Fetch all tweets of a user by user id, most recent tweets first:
+--2)Fetch all tweets of a user by user id, most recent tweets first:
 
 SELECT tweets.content, tweets.Tweeted_Time, users.name
 FROM tweets
@@ -111,32 +110,32 @@ JOIN users ON tweets.user_id = users.user_id
 WHERE tweets.user_id = 1  -- Change with the user_id you are interested in
 ORDER BY tweets.Tweeted_Time DESC;
 
-3)Fetch like count of a particular tweet by tweet id
+--3)Fetch like count of a particular tweet by tweet id
 
 SELECT COUNT(*) AS like_count
 FROM likes
 WHERE tweet_id = 1; -- Change with the tweet_id you are interested in
 
-4)Fetch retweet count of a particular tweet by tweet id:
+--4)Fetch retweet count of a particular tweet by tweet id:
 
 SELECT COUNT(*) AS retweet_count
 FROM retweets
 WHERE original_tweet_id = 1; -- Change with the original_tweet_id you are interested in
 
-5)Fetch comment count of a particular tweet by tweet id:
+--5)Fetch comment count of a particular tweet by tweet id:
 
 SELECT COUNT(*) AS comment_count
 FROM comments
 WHERE tweet_id = 1; -- Replace with the tweet_id you are interested in
 
-6)Fetch all users' names who have retweeted a particular tweet by tweet id:
+--6)Fetch all users' names who have retweeted a particular tweet by tweet id:
 
 SELECT users.name
 FROM retweets
 JOIN users ON retweets.user_id = users.user_id
 WHERE retweets.original_tweet_id = 1; -- Replace with the original_tweet_id you are interested in
 
-7)Fetch all commented tweet’s content for a particular tweet by tweet id:
+--7)Fetch all commented tweet’s content for a particular tweet by tweet id:
 
 SELECT comments.comment_id, comments.Comment_time, tweets.content, users.name
 FROM comments
@@ -144,7 +143,7 @@ JOIN tweets ON comments.tweet_id = tweets.tweet_id
 JOIN users ON tweets.user_id = users.user_id
 WHERE comments.tweet_id = 1; -- Replace with the tweet_id you are interested in
 
-8)Fetch user’s timeline (All tweets from users whom I am following with tweet content and user name who has tweeted it):
+--8)Fetch user’s timeline (All tweets from users whom I am following with tweet content and user name who has tweeted it):
 
 SELECT tweets.content, tweets.Tweeted_Time, users.name
 FROM tweets
